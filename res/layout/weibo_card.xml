@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res/com.hope.weiboo"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="#FFF"
+    card_view:cardCornerRadius="4dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp" >
+
+        <RelativeLayout
+            android:id="@+id/weibo_head"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp" >
+
+            <!-- 显示用户图片和认证图标 -->
+
+            <FrameLayout
+                android:id="@+id/weibo_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginStart="3dp" >
+
+                <!-- 显示用户头像 -->
+
+                <ImageView
+                    android:id="@+id/user_pic"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:contentDescription="@string/weibo_pic"
+                    android:src="@drawable/kenan" />
+                <!-- 显示用户认证vip -->
+
+                <ImageView
+                    android:id="@+id/avatar_vip"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="bottom|end"
+                    android:contentDescription="@string/avatar_vip"
+                    android:src="@drawable/avatar_enterprise_vip"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/weibo_pic"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toEndOf="@id/weibo_pic"
+                android:layout_toRightOf="@id/weibo_pic" >
+
+                <!-- 用户名 -->
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="3dp"
+                    android:orientation="horizontal" >
+
+                    <!-- 微博发表时间 -->
+
+                    <TextView
+                        android:id="@+id/create_at"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+
+                    <!-- 来自什么客户端 -->
+
+                    <TextView
+                        android:id="@+id/source"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginStart="3dp"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp" >
+
+                <ImageView
+                    android:id="@+id/img_comment"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/comment" />
+
+                <!-- 微博评论数 -->
+                <TextView
+                    android:id="@+id/txt_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="-2dp"
+                    android:text="8"
+                    android:textColor="#ccc"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/img_share"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginStart="6dp"
+                    android:src="@drawable/share" />
+
+                <!-- 微博转发数 -->
+                <TextView
+                    android:id="@+id/txt_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="-2dp"
+                    android:text="10"
+                    android:textColor="#ccc"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/weibo_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weibo_head"
+            android:layout_margin="5dp" >
+
+            <!-- 微博内容 -->
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:lineSpacingExtra="2dp"
+                android:autoLink="web|email" />
+
+            <GridView
+                android:id="@+id/grid_pictures"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:layout_below="@id/content"
+                android:horizontalSpacing="2dp"
+                android:numColumns="3"
+                android:verticalSpacing="2dp"
+                android:visibility="gone" >
+            </GridView>
+
+            <RelativeLayout
+                android:id="@+id/repost_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/grid_pictures"
+                android:layout_margin="5dp"
+                android:background="#f7f7f7"
+                android:visibility="gone" >
+
+                <!-- 转发微博内容 -->
+                <TextView
+                    android:id="@+id/repost_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web|email"/>
+
+                <GridView
+                    android:id="@+id/repost_grid_pictures"
+                    android:layout_width="260dp"
+                    android:layout_height="260dp"
+                    android:layout_below="@id/repost_content"
+                    android:layout_marginTop="5dp"
+                    android:horizontalSpacing="2dp"
+                    android:numColumns="3"
+                    android:verticalSpacing="2dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

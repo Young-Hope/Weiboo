@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Weiboo</string>
+    
+	<string name="txt_login">用微博登陆</string>
+	<string name="weibo_pic">微博头像</string>
+	<string name="avatar_vip">微博认证</string>
+	<string name="user_vip_level">vip等级</string>
+	
+</resources>
