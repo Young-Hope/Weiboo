@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import com.hope.weiboo.R;
 import com.hope.weiboo.asynctask.AsyncImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sina.weibo.sdk.openapi.models.Status;
 
 import android.graphics.Bitmap;
@@ -87,13 +88,25 @@ public class WeiboListAdapter extends
 		holder.mTxtComment.setText(status.comments_count + "");
 		holder.mTxtShare.setText(status.reposts_count + "");
 
+		// 设置微博时间
 		String from = parseTime(status);
 		holder.mCreateAt.setText(from);
 		
+		// 设置微博来源
 		String source = parseSource(status);
 		holder.mSource.setText(source);
 		
+		// 加载头像
 		loadUserHeadPic(holder.mUserPic, status.user.profile_image_url);
+		
+		// 当配图大于一张时，前面的url返回的是第一张图的小图地址。
+		String thumbnail_pic = status.thumbnail_pic;
+		String bmiddle_pic = status.bmiddle_pic;
+		String original_pic = status.original_pic;
+		ArrayList<String> pic_urls = status.pic_urls;
+		if (pic_urls != null) {
+			int size = pic_urls.size();
+		}
 	}
 
 	private void loadUserHeadPic(ImageView imgView, String url) {

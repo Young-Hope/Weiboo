@@ -168,6 +168,7 @@
                 android:lineSpacingExtra="2dp"
                 android:autoLink="web|email" />
 
+            <!-- 微博图片，当只有一张图片时使用ImageView，多张图片时使用GridView -->
             <GridView
                 android:id="@+id/grid_pictures"
                 android:layout_width="260dp"
@@ -178,7 +179,7 @@
                 android:verticalSpacing="2dp"
                 android:visibility="gone" >
             </GridView>
-
+            
             <RelativeLayout
                 android:id="@+id/repost_body"
                 android:layout_width="match_parent"
