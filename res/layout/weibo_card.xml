@@ -41,10 +41,10 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginBottom="3dp"
-                    android:layout_marginRight="3dp"
                     android:layout_marginEnd="3dp"
+                    android:layout_marginRight="3dp"
                     android:contentDescription="@string/weibo_pic"
-                    android:src="@drawable/kenan" />
+                    android:src="@drawable/default_pic" />
                 <!-- 显示用户认证vip -->
 
                 <ImageView
@@ -61,8 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/weibo_pic"
-                android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/weibo_pic"
                 android:layout_toRightOf="@id/weibo_pic" >
 
@@ -108,8 +108,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_margin="5dp" >
 
                 <ImageView
@@ -119,6 +119,7 @@
                     android:src="@drawable/comment" />
 
                 <!-- 微博评论数 -->
+
                 <TextView
                     android:id="@+id/txt_comment"
                     android:layout_width="wrap_content"
@@ -139,6 +140,7 @@
                     android:src="@drawable/share" />
 
                 <!-- 微博转发数 -->
+
                 <TextView
                     android:id="@+id/txt_share"
                     android:layout_width="wrap_content"
@@ -160,51 +162,96 @@
             android:layout_margin="5dp" >
 
             <!-- 微博内容 -->
+
             <TextView
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:autoLink="web|email"
                 android:lineSpacingExtra="2dp"
-                android:autoLink="web|email" />
+                android:textSize="18sp" />
 
             <!-- 微博图片，当只有一张图片时使用ImageView，多张图片时使用GridView -->
-            <GridView
-                android:id="@+id/grid_pictures"
-                android:layout_width="260dp"
-                android:layout_height="260dp"
+
+            <com.hope.weiboo.view.NoScrollGridView
+                android:id="@+id/picture_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/content"
-                android:horizontalSpacing="2dp"
+                android:adjustViewBounds="true"
+                android:horizontalSpacing="1dp"
+                android:maxHeight="4000dp"
+                android:maxWidth="4000dp"
                 android:numColumns="3"
-                android:verticalSpacing="2dp"
-                android:visibility="gone" >
-            </GridView>
-            
+                android:verticalSpacing="3dp"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/picture_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/content"
+                android:adjustViewBounds="true"
+                android:maxHeight="150dp"
+                android:maxWidth="150dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/default_pic"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone" />
+
+            <!-- 转发微博内容 -->
+
             <RelativeLayout
                 android:id="@+id/repost_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/grid_pictures"
+                android:layout_below="@id/picture_grid"
                 android:layout_margin="5dp"
                 android:background="#f7f7f7"
+                android:lineSpacingExtra="2dp"
                 android:visibility="gone" >
 
-                <!-- 转发微博内容 -->
                 <TextView
                     android:id="@+id/repost_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autoLink="web|email"/>
+                    android:autoLink="web|email"
+                    android:lineSpacingExtra="2dp"
+                    android:textSize="17sp"
+                    android:visibility="gone" />
 
-                <GridView
-                    android:id="@+id/repost_grid_pictures"
-                    android:layout_width="260dp"
-                    android:layout_height="260dp"
+                <com.hope.weiboo.view.NoScrollGridView
+                    android:id="@+id/repost_pictures_grid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/repost_content"
-                    android:layout_marginTop="5dp"
-                    android:horizontalSpacing="2dp"
+                    android:adjustViewBounds="true"
+                    android:horizontalSpacing="1dp"
+                    android:maxHeight="4000dp"
+                    android:maxWidth="4000dp"
                     android:numColumns="3"
-                    android:verticalSpacing="2dp" />
+                    android:verticalSpacing="3dp"
+                    android:layout_margin="2dp"
+                    android:visibility="gone" />
+                
+                <ImageView
+	                android:id="@+id/repost_picture_one"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_alignParentLeft="true"
+	                android:layout_alignParentStart="true"
+	                android:layout_below="@id/repost_content"
+	                android:adjustViewBounds="true"
+	                android:maxHeight="150dp"
+	                android:maxWidth="150dp"
+	                android:scaleType="fitStart"
+	                android:src="@drawable/default_pic"
+	                android:layout_margin="3dp"
+	                android:visibility="gone" />
+                
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>

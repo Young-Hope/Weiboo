@@ -129,18 +129,18 @@ containing a value of this type.
     public static final class color {
         /**  Background color for dark CardView. 
          */
-        public static final int cardview_dark_background=0x7f070003;
+        public static final int cardview_dark_background=0x7f040001;
         /**  Background color for light CardView. 
          */
-        public static final int cardview_light_background=0x7f070002;
+        public static final int cardview_light_background=0x7f040000;
         /**  Shadow color for the furthest pixels around CardView. 
          */
-        public static final int cardview_shadow_end_color=0x7f070005;
+        public static final int cardview_shadow_end_color=0x7f040003;
         /**  Shadow color for the first pixels around CardView. 
          */
-        public static final int cardview_shadow_start_color=0x7f070004;
-        public static final int com_sina_weibo_sdk_blue=0x7f070000;
-        public static final int com_sina_weibo_sdk_loginview_text_color=0x7f070001;
+        public static final int cardview_shadow_start_color=0x7f040002;
+        public static final int com_sina_weibo_sdk_blue=0x7f040004;
+        public static final int com_sina_weibo_sdk_loginview_text_color=0x7f040005;
     }
     public static final class dimen {
         /**      <dimen name="weibosdk_dialog_left_margin">10dp</dimen>
@@ -148,25 +148,29 @@ containing a value of this type.
     <dimen name="weibosdk_dialog_right_margin">10dp</dimen>
     <dimen name="weibosdk_dialog_bottom_margin">10dp</dimen> 
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050003;
+        public static final int activity_vertical_margin=0x7f050004;
         /**  Inset shadow for RoundRectDrawableWithShadow. It is used to avoid gaps between the card
      and the shadow. 
          */
-        public static final int cardview_compat_inset_shadow=0x7f04000b;
+        public static final int cardview_compat_inset_shadow=0x7f050002;
         /**  Elevation value to use for CardViews. Pre-L, it is equal to shadow size. 
          */
-        public static final int cardview_default_elevation=0x7f04000a;
+        public static final int cardview_default_elevation=0x7f050001;
         /**  Default radius for CardView corners. 
          */
-        public static final int cardview_default_radius=0x7f040009;
-        public static final int com_sina_weibo_sdk_loginview_compound_drawable_padding=0x7f040008;
-        public static final int com_sina_weibo_sdk_loginview_padding=0x7f040003;
-        public static final int com_sina_weibo_sdk_loginview_padding_bottom=0x7f040007;
-        public static final int com_sina_weibo_sdk_loginview_padding_left=0x7f040004;
-        public static final int com_sina_weibo_sdk_loginview_padding_right=0x7f040005;
-        public static final int com_sina_weibo_sdk_loginview_padding_top=0x7f040006;
-        public static final int com_sina_weibo_sdk_loginview_text_size=0x7f040002;
+        public static final int cardview_default_radius=0x7f050000;
+        public static final int com_sina_weibo_sdk_loginview_compound_drawable_padding=0x7f05000b;
+        public static final int com_sina_weibo_sdk_loginview_padding=0x7f050006;
+        public static final int com_sina_weibo_sdk_loginview_padding_bottom=0x7f05000a;
+        public static final int com_sina_weibo_sdk_loginview_padding_left=0x7f050007;
+        public static final int com_sina_weibo_sdk_loginview_padding_right=0x7f050008;
+        public static final int com_sina_weibo_sdk_loginview_padding_top=0x7f050009;
+        public static final int com_sina_weibo_sdk_loginview_text_size=0x7f050005;
+        public static final int height=0x7f05000d;
+        /**  Default screen margins, per the Android Design guidelines. 
+         */
+        public static final int width=0x7f05000c;
     }
     public static final class drawable {
         public static final int avatar_enterprise_vip=0x7f020000;
@@ -178,62 +182,67 @@ containing a value of this type.
         public static final int com_sina_weibo_sdk_login_button_with_original_logo=0x7f020006;
         public static final int comment=0x7f020007;
         public static final int common_icon_membership_level6=0x7f020008;
-        public static final int ic_com_sina_weibo_sdk_button_blue_focused=0x7f020009;
-        public static final int ic_com_sina_weibo_sdk_button_blue_normal=0x7f02000a;
-        public static final int ic_com_sina_weibo_sdk_button_blue_pressed=0x7f02000b;
-        public static final int ic_com_sina_weibo_sdk_button_grey_focused=0x7f02000c;
-        public static final int ic_com_sina_weibo_sdk_button_grey_normal=0x7f02000d;
-        public static final int ic_com_sina_weibo_sdk_button_grey_pressed=0x7f02000e;
-        public static final int ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused=0x7f02000f;
-        public static final int ic_com_sina_weibo_sdk_login_button_with_frame_logo_normal=0x7f020010;
-        public static final int ic_com_sina_weibo_sdk_login_button_with_frame_logo_pressed=0x7f020011;
-        public static final int ic_com_sina_weibo_sdk_login_with_account_text_focused=0x7f020012;
-        public static final int ic_com_sina_weibo_sdk_login_with_account_text_normal=0x7f020013;
-        public static final int ic_com_sina_weibo_sdk_login_with_account_text_pressed=0x7f020014;
-        public static final int ic_com_sina_weibo_sdk_login_with_text=0x7f020015;
-        public static final int ic_com_sina_weibo_sdk_logo=0x7f020016;
-        public static final int ic_launcher=0x7f020017;
-        public static final int kenan=0x7f020018;
-        public static final int login_with_weibo=0x7f020019;
-        public static final int share=0x7f02001a;
-        public static final int yingmu=0x7f02001b;
+        public static final int default_pic=0x7f020009;
+        public static final int ic_com_sina_weibo_sdk_button_blue_focused=0x7f02000a;
+        public static final int ic_com_sina_weibo_sdk_button_blue_normal=0x7f02000b;
+        public static final int ic_com_sina_weibo_sdk_button_blue_pressed=0x7f02000c;
+        public static final int ic_com_sina_weibo_sdk_button_grey_focused=0x7f02000d;
+        public static final int ic_com_sina_weibo_sdk_button_grey_normal=0x7f02000e;
+        public static final int ic_com_sina_weibo_sdk_button_grey_pressed=0x7f02000f;
+        public static final int ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused=0x7f020010;
+        public static final int ic_com_sina_weibo_sdk_login_button_with_frame_logo_normal=0x7f020011;
+        public static final int ic_com_sina_weibo_sdk_login_button_with_frame_logo_pressed=0x7f020012;
+        public static final int ic_com_sina_weibo_sdk_login_with_account_text_focused=0x7f020013;
+        public static final int ic_com_sina_weibo_sdk_login_with_account_text_normal=0x7f020014;
+        public static final int ic_com_sina_weibo_sdk_login_with_account_text_pressed=0x7f020015;
+        public static final int ic_com_sina_weibo_sdk_login_with_text=0x7f020016;
+        public static final int ic_com_sina_weibo_sdk_logo=0x7f020017;
+        public static final int ic_launcher=0x7f020018;
+        public static final int kenan=0x7f020019;
+        public static final int login_with_weibo=0x7f02001a;
+        public static final int share=0x7f02001b;
+        public static final int yingmu=0x7f02001c;
     }
     public static final class id {
-        public static final int avatar_vip=0x7f080006;
+        public static final int avatar_vip=0x7f080007;
         public static final int btn_login=0x7f080001;
-        public static final int card_view=0x7f080002;
-        public static final int content=0x7f08000f;
-        public static final int create_at=0x7f080008;
-        public static final int grid_pictures=0x7f080010;
-        public static final int img_comment=0x7f08000a;
-        public static final int img_share=0x7f08000c;
-        public static final int repost_body=0x7f080011;
-        public static final int repost_content=0x7f080012;
-        public static final int repost_grid_pictures=0x7f080013;
-        public static final int source=0x7f080009;
-        public static final int txt_comment=0x7f08000b;
-        public static final int txt_share=0x7f08000d;
-        public static final int user_name=0x7f080007;
-        public static final int user_pic=0x7f080005;
-        public static final int weibo_body=0x7f08000e;
-        public static final int weibo_head=0x7f080003;
+        public static final int card_view=0x7f080003;
+        public static final int content=0x7f080010;
+        public static final int create_at=0x7f080009;
+        public static final int img_comment=0x7f08000b;
+        public static final int img_share=0x7f08000d;
+        public static final int pic_view=0x7f080002;
+        public static final int picture_grid=0x7f080011;
+        public static final int picture_one=0x7f080012;
+        public static final int repost_body=0x7f080013;
+        public static final int repost_content=0x7f080014;
+        public static final int repost_picture_one=0x7f080016;
+        public static final int repost_pictures_grid=0x7f080015;
+        public static final int source=0x7f08000a;
+        public static final int txt_comment=0x7f08000c;
+        public static final int txt_share=0x7f08000e;
+        public static final int user_name=0x7f080008;
+        public static final int user_pic=0x7f080006;
+        public static final int weibo_body=0x7f08000f;
+        public static final int weibo_head=0x7f080004;
         public static final int weibo_list=0x7f080000;
-        public static final int weibo_pic=0x7f080004;
+        public static final int weibo_pic=0x7f080005;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
         public static final int activity_welcome=0x7f030001;
-        public static final int weibo_card=0x7f030002;
+        public static final int view_picture=0x7f030002;
+        public static final int weibo_card=0x7f030003;
     }
     public static final class string {
-        public static final int app_name=0x7f050003;
-        public static final int avatar_vip=0x7f050006;
-        public static final int com_sina_weibo_sdk_login=0x7f050001;
-        public static final int com_sina_weibo_sdk_login_with_weibo_account=0x7f050000;
-        public static final int com_sina_weibo_sdk_logout=0x7f050002;
-        public static final int txt_login=0x7f050004;
-        public static final int user_vip_level=0x7f050007;
-        public static final int weibo_pic=0x7f050005;
+        public static final int app_name=0x7f070003;
+        public static final int avatar_vip=0x7f070006;
+        public static final int com_sina_weibo_sdk_login=0x7f070001;
+        public static final int com_sina_weibo_sdk_login_with_weibo_account=0x7f070000;
+        public static final int com_sina_weibo_sdk_logout=0x7f070002;
+        public static final int txt_login=0x7f070004;
+        public static final int user_vip_level=0x7f070007;
+        public static final int weibo_pic=0x7f070005;
     }
     public static final class style {
         /** 
@@ -266,18 +275,18 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f060003;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
-        public static final int CardView=0x7f060004;
-        public static final int CardView_Dark=0x7f060006;
-        public static final int CardView_Light=0x7f060005;
-        public static final int com_sina_weibo_sdk_loginview_default_style=0x7f060002;
-        public static final int com_sina_weibo_sdk_loginview_silver_style=0x7f060003;
+        public static final int AppTheme=0x7f060004;
+        public static final int CardView=0x7f060000;
+        public static final int CardView_Dark=0x7f060002;
+        public static final int CardView_Light=0x7f060001;
+        public static final int com_sina_weibo_sdk_loginview_default_style=0x7f060005;
+        public static final int com_sina_weibo_sdk_loginview_silver_style=0x7f060006;
     }
     public static final class styleable {
         /** Attributes that can be used with a CardView.
