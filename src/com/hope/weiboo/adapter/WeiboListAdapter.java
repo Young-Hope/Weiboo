@@ -8,79 +8,94 @@ import java.util.List;
 import java.util.Locale;
 
 import com.hope.weiboo.R;
-import com.hope.weiboo.asynctask.AsyncImageLoader;
+import com.hope.weiboo.util.GetLruCacheUtil;
+import com.hope.weiboo.util.ImageLoaderUtil;
+import com.hope.weiboo.view.NoScrollGridView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.sina.weibo.sdk.openapi.models.Status;
+import com.squareup.picasso.Picasso;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
-import android.text.util.Linkify;
 import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class WeiboListAdapter extends
 		RecyclerView.Adapter<WeiboListAdapter.ViewHolder> {
 
-	public List<Status> statusList;
-
-	private final int mMaxMemory = (int) Runtime.getRuntime().maxMemory();
-	private final int mCacheSize = mMaxMemory / 5;
-	private LruCache<String, Bitmap> mLruCache = new LruCache<String, Bitmap>(mCacheSize) {
-		protected int sizeOf(String key, Bitmap bitmap) {
-			return bitmap.getRowBytes() * bitmap.getHeight() / 1024;
-		};
-	};
+	private List<Status> mStatusList;
+	private Context mContext;
 	
-	public WeiboListAdapter(ArrayList<Status> statusList) {
+	public WeiboListAdapter(ArrayList<Status> statusList, Context context) {
 		super();
-		this.statusList = statusList;
+		this.mStatusList = statusList;
+		mContext = context;
 	}
 
 	public void setStatusList(List<Status> statusList) {
-		this.statusList = statusList;
+		this.mStatusList = statusList;
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
-
-		private ImageView mUserPic;
-		private ImageView mShare;
-		private ImageView mComment;
-
+		
+		// 原创微博内容
 		private TextView mUserName;
 		private TextView mCreateAt;
 		private TextView mSource;
 		private TextView mTxtShare;
 		private TextView mTxtComment;
 		private TextView mContent;
-
+		private NoScrollGridView mGridView;
+		private ImageView mUserPic;
+		private ImageView mContentPic;
+		
+		// 转发微博内容
+		private RelativeLayout mRepostBody;
+		private TextView mReContent;
+		private ImageView mReContentPic;
+		private NoScrollGridView mReGridView;
+		
 		public ViewHolder(View view) {
 			super(view);
+			
+			// 原创微博
+			mGridView = (NoScrollGridView) view.findViewById(R.id.picture_grid);
 			mUserName = (TextView) view.findViewById(R.id.user_name);
 			mCreateAt = (TextView) view.findViewById(R.id.create_at);
 			mSource = (TextView) view.findViewById(R.id.source);
 			mTxtComment = (TextView) view.findViewById(R.id.txt_comment);
 			mTxtShare = (TextView) view.findViewById(R.id.txt_share);
 			mContent = (TextView) view.findViewById(R.id.content);
-
 			mUserPic = (ImageView) view.findViewById(R.id.user_pic);
-			mShare = (ImageView) view.findViewById(R.id.img_share);
-			mComment = (ImageView) view.findViewById(R.id.img_comment);
+			mContentPic = (ImageView) view.findViewById(R.id.picture_one);
+			
+			// 转发微博
+			mRepostBody = (RelativeLayout)view.findViewById(R.id.repost_body);
+			mReContent = (TextView) view.findViewById(R.id.repost_content);
+			mReContentPic = (ImageView)view.findViewById(R.id.repost_picture_one);
+			mReGridView = (NoScrollGridView)view.findViewById(R.id.repost_pictures_grid);
 		}
 
 	}
 
 	@Override
 	public int getItemCount() {
-		return statusList.size();
+		return mStatusList.size();
 	}
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		Status status = statusList.get(position);
+		Status status = mStatusList.get(position);
+		
 		holder.mUserName.setText(status.user.name);
 		holder.mCreateAt.setText(status.created_at);
 		
@@ -99,25 +114,76 @@ public class WeiboListAdapter extends
 		// 加载头像
 		loadUserHeadPic(holder.mUserPic, status.user.profile_image_url);
 		
-		// 当配图大于一张时，前面的url返回的是第一张图的小图地址。
-		String thumbnail_pic = status.thumbnail_pic;
-		String bmiddle_pic = status.bmiddle_pic;
-		String original_pic = status.original_pic;
+		// 加载用户微博的配图
+		loadPictureIfHas(holder, status, holder.mGridView, holder.mContentPic);
+		
+		Status retweetedStatus = status.retweeted_status;
+		
+		// 如果该微博不是转发微博
+		if (retweetedStatus == null) {
+			holder.mRepostBody.setVisibility(View.GONE);
+			return;
+		}
+		holder.mRepostBody.setVisibility(View.VISIBLE);
+		holder.mReContent.setVisibility(View.VISIBLE);
+		holder.mReContent.setText("@" + retweetedStatus.user.name + ": " + retweetedStatus.text);
+		loadPictureIfHas(holder, retweetedStatus, holder.mReGridView, holder.mReContentPic);
+		
+	}
+
+	private void loadPictureIfHas(ViewHolder holder, Status status, NoScrollGridView gridView, ImageView imgView) {
 		ArrayList<String> pic_urls = status.pic_urls;
-		if (pic_urls != null) {
-			int size = pic_urls.size();
+		int size = 0;
+		if (pic_urls == null) {
+			// 取消图片的可见性
+			imgView.setVisibility(View.GONE);
+			gridView.setVisibility(View.GONE);
+			return;
+		}
+		size = pic_urls.size();
+		if(size == 1) {
+			// 一张图片的情况
+			gridView.setVisibility(View.GONE);
+			imgView.setVisibility(View.VISIBLE);
+			String bmiddle_pic = status.bmiddle_pic;
+			
+//			if (null != imgView.getTag() && imgView.getTag().equals(bmiddle_pic)) {
+//				return;
+//			}
+			// 设置标志
+			//imgView.setTag(bmiddle_pic);
+			
+			ImageLoaderUtil util = new ImageLoaderUtil(mContext);
+			ImageLoaderConfiguration config = util.GetConfig();
+			DisplayImageOptions options = util.getOptions();
+			ImageLoader loader = ImageLoader.getInstance();
+			
+			if (!loader.isInited()) {
+				loader.init(config);
+			}
+			loader.displayImage(bmiddle_pic, imgView, options);
+		} else {
+			imgView.setVisibility(View.GONE);
+			gridView.setVisibility(View.VISIBLE);
+			
+			GridPictureAdapter adapter = new GridPictureAdapter(pic_urls, mContext);
+			gridView.setAdapter(adapter);
 		}
 	}
 
 	private void loadUserHeadPic(ImageView imgView, String url) {
-		Bitmap bm = mLruCache.get(url);
-		if (bm != null) {
-			imgView.setImageBitmap(bm);
-		} else {
-			AsyncImageLoader imageLoader = new AsyncImageLoader(50, 50, imgView, mLruCache);
-			imgView.setBackgroundResource(R.drawable.kenan);
-			imageLoader.execute(url);
+		ImageLoaderUtil util = new ImageLoaderUtil(mContext);
+		ImageLoaderConfiguration config = util.GetConfig();
+		DisplayImageOptions options = util.getOptions();
+		ImageLoader loader = ImageLoader.getInstance();
+		if (null != imgView.getTag() && imgView.getTag().equals(url)) {
+			return;
 		}
+		imgView.setTag(url);
+		if (!loader.isInited()) {
+			loader.init(config);
+		}
+		loader.displayImage(url, imgView, options);
 	}
 
 	private String parseSource(Status status) {

@@ -52,7 +52,7 @@ public class HomeActivity extends Activity{
 		mStatusesAPI.friendsTimeline(0L, 0L, 50, 1, false, 0, false, mListener);
 		
 		mStatusList = new ArrayList<Status>();
-		mAdapter = new WeiboListAdapter(mStatusList);
+		mAdapter = new WeiboListAdapter(mStatusList, HomeActivity.this);
 		mRecyclerView = (RecyclerView) findViewById(R.id.weibo_list);
         
         // 设置LinearLayoutManager  

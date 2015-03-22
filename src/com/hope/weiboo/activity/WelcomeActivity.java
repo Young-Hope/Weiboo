@@ -37,7 +37,6 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
         // 取消标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 设置全屏
